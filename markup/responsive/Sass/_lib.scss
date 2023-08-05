@@ -1,0 +1,77 @@
+// mixin
+//PC画面サイズ以上
+@mixin pc {
+    @media (min-width:1025px) {
+        @content;
+    }
+}
+
+@mixin tab {
+    @media (max-width:1024px) {
+        @content;
+    }
+}
+
+@mixin sp {
+    @media (max-width:599px) {
+        @content;
+    }
+}
+
+// 共通部分
+
+html {
+    font-size: 62.5%; //10px=1remになる
+}
+
+doby {
+    font-size: 12px;
+    line-height: 1.67;
+}
+
+// 色の変数
+$sky: #06BEB6;
+$navy: #283C86;
+
+.inner {
+    width: 80%;
+    margin: 0 auto;
+    padding: 90px 0;
+
+    @include tab {
+        padding: 50px 0;
+        width: 90%;
+    }
+
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 60px;
+
+    @include tab {
+        margin-bottom: 40px;
+    }
+
+    &--b {
+        font-weight: bold;
+    }
+
+    &::before {
+        display: inline-block;
+        content: "";
+        width: 3rem;
+        border-top: 1px solid #191919;
+        margin-right: 2rem;
+    }
+
+    &::after {
+        @extend .title::before;
+        margin-right: 0;
+        margin-left: 2rem;
+    }
+}

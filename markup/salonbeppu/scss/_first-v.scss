@@ -1,0 +1,59 @@
+#first-v {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    @include tab {
+        background-image: url(../img/Blond\ woman\ with\ long\ curly\ beautiful\ hair.png);
+        background-size: cover;
+    }
+}
+
+.fv-catch {
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 30rem auto;
+    letter-spacing: 0.25rem;
+
+    &__ja {
+        font-size: 3.8rem;
+
+        @include tab {
+            padding-top: 50px;
+        }
+    }
+
+    &__en {
+        font-size: 3.8rem;
+        padding-top: 50px;
+
+        @include tab {
+            padding: 0%;
+        }
+    }
+
+    @include tab {
+        flex-direction: column-reverse;
+        color: #fff;
+        text-shadow: 0 0.3rem 1.6rem black;
+    }
+}
+
+.fv-img {
+    width: 54%;
+    height: 100vh;
+
+    @include tab {
+        display: none;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

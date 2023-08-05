@@ -1,0 +1,688 @@
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav,
+ul,
+li {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a:visited {
+  color: inherti;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+i {
+  font-style: normal;
+}
+
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+doby {
+  font-size: 12px;
+  line-height: 1.67;
+}
+
+.inner {
+  width: 85%;
+  margin: 0 auto;
+  padding-top: 25.5rem;
+  padding-bottom: 60px;
+}
+@media (max-width: 1024px) {
+  .inner {
+    width: 95%;
+    padding-top: 6rem;
+  }
+}
+
+.title {
+  width: 23rem;
+  height: 2.5rem;
+  color: #707070;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  display: flex;
+}
+@media (max-width: 1024px) {
+  .title {
+    margin-bottom: 6rem;
+  }
+}
+.title::after {
+  display: inline-block;
+  content: "";
+  width: 8rem;
+  border: 1px solid #707070;
+  margin-left: 2rem;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+header {
+  width: 100%;
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  text-align: center;
+  padding: 75px;
+}
+@media (max-width: 1024px) {
+  header {
+    height: 7rem;
+    position: initial;
+    padding: 2.4rem 2rem 0 2rem;
+    justify-content: space-between;
+  }
+}
+header nav {
+  width: 40rem;
+  padding-top: 1rem;
+}
+@media (max-width: 1024px) {
+  header nav {
+    display: none;
+  }
+}
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.8rem;
+}
+header nav ul li {
+  transition: 0.5s;
+  margin: 0 10px;
+  color: #707070;
+}
+header nav li::after {
+  content: "";
+  width: 0px;
+  transition: width 0.5s;
+  display: block;
+  border-bottom: 1px solid black;
+}
+header nav li:hover {
+  color: black;
+}
+header nav li:hover::after {
+  width: 80%;
+}
+
+.hd-logo {
+  width: 30rem;
+  font-size: 3.8rem;
+}
+@media (max-width: 1024px) {
+  .hd-logo {
+    width: 18rem;
+    height: 2.2rem;
+    font-size: 2.2rem;
+  }
+}
+
+.ham {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .ham {
+    display: flex;
+    width: 1.6rem;
+    height: 1.5rem;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .ham span {
+    display: inline-block;
+    width: 100%;
+    height: 1.5px;
+    background-color: #3B4043;
+  }
+  .ham span:nth-of-type(3) {
+    width: 50%;
+  }
+}
+
+#first-v {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+@media (max-width: 1024px) {
+  #first-v {
+    background-image: url(../img/Blond\ woman\ with\ long\ curly\ beautiful\ hair.png);
+    background-size: cover;
+  }
+}
+
+.fv-catch {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 30rem auto;
+  letter-spacing: 0.25rem;
+}
+.fv-catch__ja {
+  font-size: 3.8rem;
+}
+@media (max-width: 1024px) {
+  .fv-catch__ja {
+    padding-top: 50px;
+  }
+}
+.fv-catch__en {
+  font-size: 3.8rem;
+  padding-top: 50px;
+}
+@media (max-width: 1024px) {
+  .fv-catch__en {
+    padding: 0%;
+  }
+}
+@media (max-width: 1024px) {
+  .fv-catch {
+    flex-direction: column-reverse;
+    color: #fff;
+    text-shadow: 0 0.3rem 1.6rem black;
+  }
+}
+
+.fv-img {
+  width: 54%;
+  height: 100vh;
+}
+@media (max-width: 1024px) {
+  .fv-img {
+    display: none;
+  }
+}
+.fv-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#concept {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: linear-gradient(to bottom, rgba(161, 147, 134, 0.1215686275) 0%, rgba(161, 147, 134, 0.1215686275) 45%, rgba(161, 147, 134, 0.537254902) 45%, rgba(161, 147, 134, 0.537254902) 100%);
+}
+
+.concept-img {
+  width: 100%;
+  display: flex;
+}
+.concept-img__1 {
+  width: auto;
+  height: 47.5rem;
+  padding-right: 1rem;
+}
+@media (max-width: 1024px) {
+  .concept-img__1 {
+    width: 50%;
+    height: 400px;
+  }
+}
+.concept-img__1 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: right;
+     object-position: right;
+}
+.concept-img__2 {
+  width: auto;
+  height: 47.5rem;
+}
+@media (max-width: 1024px) {
+  .concept-img__2 {
+    width: 50%;
+    height: 400px;
+  }
+}
+.concept-img__2 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.concept-text {
+  width: 100%;
+  height: 13rem;
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  text-align: center;
+}
+@media (max-width: 1024px) {
+  .concept-text {
+    flex-direction: column;
+  }
+}
+.concept-text__catch {
+  width: 55%;
+  height: 4.5rem;
+  font-size: 4rem;
+  letter-spacing: 1.6rem;
+}
+@media (max-width: 1024px) {
+  .concept-text__catch {
+    width: 100%;
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+}
+.concept-text__desc {
+  width: 42rem;
+  height: 13rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.16rem;
+}
+
+#menu {
+  width: 100%;
+}
+
+.menu-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 1024px) {
+  .menu-wrap {
+    display: block;
+  }
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  letter-spacing: 0.16rem;
+}
+.menu-item__img {
+  width: 30rem;
+}
+@media (max-width: 1024px) {
+  .menu-item__img {
+    width: 100%;
+  }
+}
+.menu-item__img img {
+  width: 100%;
+  height: 100%;
+}
+.menu-item__title {
+  font-size: 3rem;
+  margin: 0 auto;
+  padding-top: 3.5rem;
+  letter-spacing: 0.3rem;
+}
+@media (max-width: 1024px) {
+  .menu-item__title {
+    margin: 0;
+  }
+}
+.menu-item__desc {
+  width: 30rem;
+  margin: 0 auto;
+  padding-top: 3.5rem;
+}
+@media (max-width: 1024px) {
+  .menu-item__desc {
+    width: 100%;
+  }
+}
+.menu-item__price {
+  text-align: right;
+  padding-top: 3.5rem;
+}
+
+.menu-item:nth-of-type(1),
+.menu-item:nth-of-type(2) {
+  padding-bottom: 6rem;
+}
+
+#access {
+  width: 100%;
+  height: 75.7rem;
+  background-color: rgba(161, 147, 134, 0.1215686275);
+}
+#access .inner {
+  height: 27.5rem;
+  padding-bottom: 3.5rem;
+}
+@media (max-width: 1024px) {
+  #access .inner {
+    height: auto;
+    padding-bottom: 0;
+  }
+}
+
+.access-wrap {
+  width: 100%;
+  height: 40rem;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 1024px) {
+  .access-wrap {
+    height: auto;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+}
+.access-wrap__left {
+  width: 40%;
+  height: 100%;
+  background-color: #D0C5BA;
+}
+@media (max-width: 1024px) {
+  .access-wrap__left {
+    width: 100%;
+    height: 28rem;
+  }
+}
+
+.access-detail {
+  width: 22rem;
+  height: 20rem;
+  margin: 10rem auto;
+}
+@media (max-width: 1024px) {
+  .access-detail {
+    margin: 3rem auto 6rem 2rem;
+  }
+}
+.access-detail__name {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.2196078431);
+  letter-spacing: 0.24rem;
+}
+.access-detail__others {
+  padding-top: 0.5rem;
+  color: #FFFFFF;
+}
+.access-detail__others ul {
+  font-size: 1.6rem;
+  letter-spacing: 0.16rem;
+}
+.access-detail__others ul li {
+  padding-top: 2.5rem;
+}
+
+.map {
+  width: 60%;
+  height: 100%;
+}
+@media (max-width: 1024px) {
+  .map {
+    width: 100%;
+    height: 40vh;
+  }
+}
+.map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  width: 100%;
+  height: 34rem;
+  position: relative;
+  border: 1px solid #fff;
+}
+footer::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  content: "";
+  width: 83%;
+  border: 1px solid rgba(112, 112, 112, 0.3019607843);
+}
+
+.footer-wrap {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  margin: 25rem auto 0 auto;
+}
+.footer-wrap .ft-bottom-wrap {
+  display: flex;
+  font-size: 3.2rem;
+  color: rgba(112, 112, 112, 0.3019607843);
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .footer-wrap .ft-bottom-wrap {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 1024px) {
+  .footer-wrap {
+    flex-direction: column-reverse;
+  }
+}
+.footer-wrap .ft-logo {
+  font-size: 3.2rem;
+  color: rgba(112, 112, 112, 0.3019607843);
+}
+@media (max-width: 1024px) {
+  .footer-wrap .ft-logo {
+    font-size: 1.8rem;
+  }
+}
+.footer-wrap .ft-logo i {
+  font-family: "Font Awesome 5 Brands";
+  color: black;
+}
+.footer-wrap .ft-logo i.fa-twitter {
+  padding-left: 2.5rem;
+}
+.footer-wrap .ft-btn {
+  width: 18.4rem;
+  height: 3.4rem;
+  background-color: #fff;
+  color: #707070;
+  border: 1px solid #707070;
+  font-size: 1.8rem;
+  letter-spacing: 0.18rem;
+}
+@media (max-width: 1024px) {
+  .footer-wrap .ft-btn {
+    margin: 0 auto 6rem;
+  }
+}/*# sourceMappingURL=main.css.map */

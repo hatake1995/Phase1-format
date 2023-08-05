@@ -1,0 +1,69 @@
+// mixin
+//PC画面サイズ以上
+@mixin pc {
+    @media (min-width:1025px) {
+        @content;
+    }
+}
+
+@mixin tab {
+    @media (max-width:1024px) {
+        @content;
+    }
+}
+
+@mixin sp {
+    @media (max-width:599px) {
+        @content;
+    }
+}
+
+html {
+    font-size: 62.5%; //10px=1remになる
+    scroll-behavior: smooth;
+}
+
+doby {
+    font-size: 12px;
+    line-height: 1.67;
+}
+
+.inner {
+    width: 85%;
+    margin: 0 auto;
+    padding-top: 25.5rem;
+    padding-bottom: 60px;
+
+    @include tab {
+        width: 95%;
+        padding-top: 6rem;
+    }
+}
+
+.title {
+    width: 23rem;
+    height: 2.5rem;
+    color: #707070;
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+
+    @include tab {
+        margin-bottom: 6rem;
+    }
+
+    &::after {
+        display: inline-block;
+        content: "";
+        width: 8rem;
+        border: 1px solid #707070;
+        margin-left: 2rem;
+    }
+}
+
+ul,
+li {
+    list-style: none;
+}

@@ -1,0 +1,77 @@
+footer {
+    width: 100%;
+    height: 34rem;
+    position: relative;
+    border: 1px solid #fff;
+
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        content: "";
+        width: 83%;
+        border: 1px solid #7070704D;
+    }
+}
+
+
+
+.footer-wrap {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    margin: 25rem auto 0 auto;
+
+    .ft-bottom-wrap {
+        display: flex;
+        font-size: 3.2rem;
+        color: #7070704D;
+        align-items: center;
+
+        @include tab {
+            width: 100%;
+            justify-content: space-between;
+
+        }
+    }
+
+    @include tab {
+        flex-direction: column-reverse;
+    }
+
+    .ft-logo {
+        font-size: 3.2rem;
+        color: #7070704D;
+
+        @include tab {
+            font-size: 1.8rem;
+        }
+
+        i {
+            font-family: "Font Awesome 5 Brands";
+            color: black;
+
+            &.fa-twitter {
+                padding-left: 2.5rem;
+            }
+        }
+    }
+
+
+
+    .ft-btn {
+        width: 18.4rem;
+        height: 3.4rem;
+        background-color: #fff;
+        color: #707070;
+        border: 1px solid #707070;
+        font-size: 1.8rem;
+        letter-spacing: 0.18rem;
+
+        @include tab {
+            margin: 0 auto 6rem;
+        }
+    }
+}
