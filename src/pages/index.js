@@ -1,118 +1,197 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import React, { useState } from "react";
+import { useForm, Controller } from 'react-hook-form';
+import Container from '@material-ui/core/Container';
+import Input from '@material-ui/core/Input';
+import { db } from '../config/firebase';
+import { addDoc, collection, onSnapshot, doc, setDoc } from 'firebase/firestore';
 
 export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    //iswasLeaningには　trueはい　or　falseいいえ　が入る
+    const [isLearning, setIsLearning] = useState(null);
+    const [wasLearning, setWasLearning] = useState(null);
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    //質問isLearningに変化が起きたら発動、各情報をeに格納↓
+    const handleIsLearningChange = e => {
+        setIsLearning(e.target.value === "true")
+    }  //なんでtrue？falseも入るのになんの比較なの？↑
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+    const handleWasLearningChange = e => {
+        setWasLearning(e.target.value === "true")
+    }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+    //色々インポートされたものを定義して使えるようにする
+    const { register, handleSubmit, formState: { errors }, control } = useForm()
+    //registerはフォームの値をuseFormに渡すための関数
+    //handleSubmitはフォームが送信された時に呼び出される関数をラップするための関数でonSubmitを呼び出す
+    //fromStateは現在のフォーム状態に関する情報ｵﾌﾞｼﾞｪｸﾄ
+    //errorsは各フィールドのバリデーションエラー
+    //controlはMaterial-UIとReact Hook Formを統合するもの
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+
+    //フォームが送信されたら発動↓
+    const onSubmit = (data) => {
+        console.log(data)
+        addDoc(collection(db, "answers"), {
+            birthdate: data.birthdate,
+            name: data.name,
+            isLeaning: data.isLearning,
+            wasLeaning: data.wasLearning
+
+        })
+    }  //dataは各フォームの値が入ってる
+
+
+    return (
+        <>
+            <Container>
+                <h1>プログラミング学習に関するアンケート</h1>
+
+                {/* onSubmit(フォーム送信)されると、
+                handleSubmitが発動し、eに情報を集め、集めた情報が
+                バリデーションに引っかからなければ
+                関数onSubmitを発動させる */}
+                <form onSubmit={handleSubmit(onSubmit)}>
+
+                    <div>
+
+                        {/* htmlForは下のname='name'と紐づいてる */}
+                        <label htmlFor='name'> 名前を入力してください</label>
+
+                        <Controller
+
+                            //フォームフィールドの名前
+                            name="name"
+
+                            //フォームフィールドの初期値
+                            defaultValue=""
+
+                            //ControllerとReact Hook Formを紐づけてる
+                            control={control}
+
+                            //現在のフィールド値を表示し、ユーザーがその値を変更したときに
+                            //それを追跡するテキスト入力フィールドを表示するという動作を指定している
+                            //現在のフィールド値(value)とその値を変更するための関数onChangeを受け取る
+                            render={({ field: { value, onChange } }) =>
+                                <Input value={value} onChange={onChange} />}
+                        //Material-UIのInputコンポーネント。
+                        //value={value}現在のフィールド値
+                        //onChange={onChange}値が変更された時に呼び出される関数を指定している
+                        //ユーザーが入力するとonChange関数によって値が更新される
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="birth">生年月日を入力してください</label>
+                        <Controller
+                            name="birthdate"
+                            defaultValue=""
+                            control={control}
+                            //required: trueは入力必須のﾊﾞﾘﾃﾞｰｼｮﾝ、入力がない場合errorsにエラー情報が行く
+                            rules={{ required: true, pattern: /^[0-9]{8}$/ }}
+                            render={({ field: { value, onChange } }) =>
+                                <Input value={value} onChange={onChange} />}
+                        />
+                        {   //生年月日入力フォームに関するﾊﾞﾘﾃﾞｰｼｮﾝエラーを表すerrors.birthdate
+                            //エラーの種類がrequired(入力必須)であることをチェックするerrors.birthdate.type
+                            errors.birthdate && errors.birthdate.type === "required" ?
+                                <span>回答必須です</span> : null  //←のnullはエラーがない時は表示しないという意味
+                        }
+                        {
+                            errors.birthdate && errors.birthdate.type === "pattern" ?
+                                <span>整数8桁で入力</span> : null
+                        }
+                    </div>
+                    <div>
+                        <span>現在プログラミング学習をしていますか</span>
+
+                        <input
+                            id='isLearning1'
+                            {...register("isLearning", { required: true })}
+                            name='isLearning'
+                            type='radio'
+                            value={true}
+                            onChange={handleIsLearningChange}
+                        //ユーザーがチェックボックスをいじるとonChangeが発動し
+                        //handleIsLearningChange関数にデータが渡され、実行される
+                        />
+                        <label htmlFor='isLearning1'>はい</label>
+
+                        <input
+                            id='isLearning2'
+                            {...register("isLearning", { required: true })}
+                            name='isLearning'
+                            type='radio'
+                            value={false}
+                            onChange={handleIsLearningChange}
+                        />
+                        <label htmlFor='isLearning2'>いいえ</label>
+
+                        <input
+                            id='isLearning3'
+                            {...register("isLearning", { required: true })}
+                            name='isLearning'
+                            type='radio'
+                            value={undefined}
+                            onChange={handleIsLearningChange}
+                        />
+                        <label htmlFor='isLearning3'>わからない</label>
+
+                        {
+                            errors.isLearning &&
+                            <span>回答必須です</span>
+                        }
+                    </div>
+
+
+                    <div>
+                        <span>これまでにプログラミング学習をしたことがありますか</span>
+
+                        <input
+                            id='wasLearning1'
+                            {...register("wasLearning", { required: true })}
+                            name='wasLearning'
+                            type='radio'
+                            value={true}
+                            onChange={handleWasLearningChange}
+                        />
+                        <label htmlFor='wasLearning1'>はい</label>
+
+                        <input
+                            id='wasLearning2'
+                            {...register("wasLearning", { required: true })}
+                            name='wasLearning'
+                            type='radio'
+                            value={false}
+                            onChange={handleWasLearningChange}
+                        />
+                        <label htmlFor='wasLearning2'>いいえ</label>
+
+                        <input
+                            id='wasLearning3'
+                            {...register("wasLearning", { required: true })}
+                            name='wasLearning'
+                            type='radio'
+                            value={undefined}
+                            onChange={handleWasLearningChange}
+                        />
+                        <label htmlFor='wasLearning3'>わからない</label>
+
+                        {
+                            errors.wasLearning &&
+                            <span>回答必須です</span>
+                        }
+                    </div>
+
+                    {/* ||はどちらかがtrueの場合、trueとなる */}
+                    {/* &&は左側の条件がtrueの場合右側の処理を行う */}
+                    {(isLearning || wasLearning) && (
+                        <div>
+                            <span>これまでに学んだプログラミング言語を教えてください</span>
+                        </div>
+                    )}
+                    <input type="submit" value="提出する" />
+                </form>
+            </Container>
+        </>
+    )
 }
